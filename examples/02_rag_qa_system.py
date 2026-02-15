@@ -20,6 +20,7 @@ import os
 # Add parent directory to path for imports
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+from typing import List
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
@@ -28,7 +29,7 @@ from langchain.docstore.document import Document
 from utils import get_config
 
 
-def create_sample_documents() -> list[Document]:
+def create_sample_documents() -> List[Document]:
     """Create sample documents for demonstration."""
     documents = [
         Document(
@@ -81,7 +82,7 @@ def create_sample_documents() -> list[Document]:
     return documents
 
 
-def setup_rag_system(documents: list[Document] = None):
+def setup_rag_system(documents: List[Document] = None):
     """
     Set up a RAG system with vector store and retrieval chain.
     

@@ -33,11 +33,43 @@ def create_calculator_tool() -> Tool:
     def calculate(expression: str) -> str:
         """Evaluate a mathematical expression safely."""
         try:
-            # Only allow safe mathematical operations
-            allowed_chars = set('0123456789+-*/()%. ')
-            if not all(c in allowed_chars for c in expression):
-                return "Error: Invalid characters in expression"
-            result = eval(expression)
+            import ast
+            import operator
+            
+            # Define allowed operators
+            allowed_operators = {
+                ast.Add: operator.add,
+                ast.Sub: operator.sub,
+                ast.Mult: operator.mul,
+                ast.Div: operator.truediv,
+                ast.Mod: operator.mod,
+                ast.Pow: operator.pow,
+                ast.USub: operator.neg,
+            }
+            
+            def eval_node(node):
+                """Safely evaluate an AST node."""
+                if isinstance(node, ast.Num):
+                    return node.n
+                elif isinstance(node, ast.BinOp):
+                    op_type = type(node.op)
+                    if op_type not in allowed_operators:
+                        raise ValueError(f"Operator {op_type} not allowed")
+                    left = eval_node(node.left)
+                    right = eval_node(node.right)
+                    return allowed_operators[op_type](left, right)
+                elif isinstance(node, ast.UnaryOp):
+                    op_type = type(node.op)
+                    if op_type not in allowed_operators:
+                        raise ValueError(f"Operator {op_type} not allowed")
+                    operand = eval_node(node.operand)
+                    return allowed_operators[op_type](operand)
+                else:
+                    raise ValueError(f"Node type {type(node)} not allowed")
+            
+            # Parse and evaluate the expression
+            tree = ast.parse(expression, mode='eval')
+            result = eval_node(tree.body)
             return f"The result is: {result}"
         except Exception as e:
             return f"Error calculating: {str(e)}"

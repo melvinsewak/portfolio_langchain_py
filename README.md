@@ -152,7 +152,11 @@ CHUNK_OVERLAP=200
 
 ### Conversational Chatbot
 ```python
-from examples.conversational_chatbot import create_conversational_agent
+# For programmatic use, you can import and use the functions directly
+import sys
+sys.path.insert(0, 'path/to/portfolio_langchain_py')
+
+from examples.conversational_chatbot_01 import create_conversational_agent
 
 # Create agent
 agent = create_conversational_agent()
@@ -164,7 +168,10 @@ print(response['output'])
 
 ### RAG Q&A System
 ```python
-from examples.rag_qa_system import setup_rag_system
+import sys
+sys.path.insert(0, 'path/to/portfolio_langchain_py')
+
+from examples.rag_qa_system_02 import setup_rag_system
 
 # Setup RAG system
 qa_chain = setup_rag_system()
@@ -176,7 +183,10 @@ print(result['result'])
 
 ### Multi-Tool Agent
 ```python
-from examples.multi_tool_agent import create_multi_tool_agent
+import sys
+sys.path.insert(0, 'path/to/portfolio_langchain_py')
+
+from examples.multi_tool_agent_03 import create_multi_tool_agent
 
 # Create agent
 agent = create_multi_tool_agent()
@@ -185,6 +195,8 @@ agent = create_multi_tool_agent()
 response = agent.invoke({"input": "Calculate 15 * 8 + 42"})
 print(response['output'])
 ```
+
+**Note:** The examples are primarily designed to be run as standalone scripts using the command-line interface shown above. For programmatic use, you may need to adjust the import paths based on your project structure.
 
 ## 🏗️ Project Structure
 
