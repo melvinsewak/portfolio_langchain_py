@@ -2,6 +2,7 @@
 langchain>=0.1.0
 langchain-community>=0.0.20
 langchain-openai>=0.0.5
+langgraph>=0.0.20
 
 # Vector stores
 chromadb>=0.4.22

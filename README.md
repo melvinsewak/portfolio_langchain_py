@@ -45,6 +45,16 @@ Real-time token streaming demonstrations:
 - Token counting
 - Interactive streaming chat
 
+### 5. Multi-Agent System (`05_multi_agent_system.py`)
+Collaborative multi-agent system with orchestration:
+- **Multiple specialized agents** working together
+- **Research agent** for information gathering
+- **Writer agent** for content creation
+- **Critic agent** for quality review
+- **LangGraph** for agent orchestration
+- Sequential agent workflow
+- Agent-to-agent communication
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -94,6 +104,9 @@ python examples/03_multi_tool_agent.py --mode interactive
 
 # Streaming Chat
 python examples/04_streaming_responses.py --mode interactive
+
+# Multi-Agent System
+python examples/05_multi_agent_system.py --mode interactive
 ```
 
 #### Example/Demo Mode
@@ -111,6 +124,9 @@ python examples/03_multi_tool_agent.py --mode example
 
 # All Streaming Examples
 python examples/04_streaming_responses.py --mode all
+
+# Multi-Agent System Demo
+python examples/05_multi_agent_system.py --mode example
 ```
 
 ## ⚙️ Configuration

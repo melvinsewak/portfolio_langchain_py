@@ -84,6 +84,11 @@ python examples/03_multi_tool_agent.py --mode example
 python examples/04_streaming_responses.py --mode all
 ```
 
+**Multi-Agent System** - Multiple agents working together:
+```bash
+python examples/05_multi_agent_system.py --mode example
+```
+
 ### Customize Configuration
 
 Edit `.env` to adjust behavior:

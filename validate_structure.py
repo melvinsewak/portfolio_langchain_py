@@ -35,6 +35,7 @@ def check_directory_structure():
         ("examples/02_rag_qa_system.py", "RAG Q&A system example"),
         ("examples/03_multi_tool_agent.py", "Multi-tool agent example"),
         ("examples/04_streaming_responses.py", "Streaming responses example"),
+        ("examples/05_multi_agent_system.py", "Multi-agent system example"),
     ]
     
     all_passed = True
@@ -92,6 +93,7 @@ def check_requirements():
         "langchain",
         "langchain-community",
         "langchain-openai",
+        "langgraph",
         "chromadb",
         "faiss-cpu",
         "pypdf",
