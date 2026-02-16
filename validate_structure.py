@@ -36,6 +36,9 @@ def check_directory_structure():
         ("examples/03_multi_tool_agent.py", "Multi-tool agent example"),
         ("examples/04_streaming_responses.py", "Streaming responses example"),
         ("examples/05_multi_agent_system.py", "Multi-agent system example"),
+        ("examples/06_external_document_loading.py", "External document loading example"),
+        ("examples/07_advanced_langgraph.py", "Advanced LangGraph example"),
+        ("examples/08_external_api_agent.py", "External API agent example"),
     ]
     
     all_passed = True

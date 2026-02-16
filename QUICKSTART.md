@@ -89,6 +89,21 @@ python examples/04_streaming_responses.py --mode all
 python examples/05_multi_agent_system.py --mode example
 ```
 
+**External Document Loading** - Load PDFs and web pages:
+```bash
+python examples/06_external_document_loading.py --mode example
+```
+
+**Advanced LangGraph** - Conditional routing and parallel execution:
+```bash
+python examples/07_advanced_langgraph.py --mode example
+```
+
+**External API Agent** - Agent with weather, GitHub, and HTTP tools:
+```bash
+python examples/08_external_api_agent.py --mode example
+```
+
 ### Customize Configuration
 
 Edit `.env` to adjust behavior:

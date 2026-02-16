@@ -55,6 +55,30 @@ Collaborative multi-agent system with orchestration:
 - Sequential agent workflow
 - Agent-to-agent communication
 
+### 6. External Document Loading (`06_external_document_loading.py`)
+Load and process documents from external sources:
+- **PDF document loading** from local files
+- **Web page scraping** from URLs
+- Mixed document sources processing
+- Integration with vector store
+- Query across multiple sources
+
+### 7. Advanced LangGraph Patterns (`07_advanced_langgraph.py`)
+Advanced multi-agent workflow patterns:
+- **Conditional routing** based on analysis
+- **Parallel agent execution**
+- Dynamic path selection
+- Complex agent coordination
+- Multi-path decision making
+
+### 8. External API Agent (`08_external_api_agent.py`)
+Agent with external API integration:
+- **Weather API** lookup tool
+- **HTTP GET** request capabilities
+- **GitHub API** integration
+- JSON parsing and validation
+- API authentication patterns
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -107,6 +131,15 @@ python examples/04_streaming_responses.py --mode interactive
 
 # Multi-Agent System
 python examples/05_multi_agent_system.py --mode interactive
+
+# External Document Loading
+python examples/06_external_document_loading.py --mode interactive
+
+# Advanced LangGraph
+python examples/07_advanced_langgraph.py --mode interactive
+
+# External API Agent
+python examples/08_external_api_agent.py --mode interactive
 ```
 
 #### Example/Demo Mode
@@ -127,6 +160,15 @@ python examples/04_streaming_responses.py --mode all
 
 # Multi-Agent System Demo
 python examples/05_multi_agent_system.py --mode example
+
+# External Document Loading Demo
+python examples/06_external_document_loading.py --mode example
+
+# Advanced LangGraph Demo
+python examples/07_advanced_langgraph.py --mode example
+
+# External API Agent Demo
+python examples/08_external_api_agent.py --mode example
 ```
 
 ## ⚙️ Configuration
