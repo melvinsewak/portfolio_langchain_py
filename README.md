@@ -49,7 +49,7 @@ Real-time token streaming demonstrations:
 
 ### Prerequisites
 
-- Python 3.8 or higher
+- Python 3.9 or higher
 - OpenAI API key
 
 ### Installation
@@ -150,53 +150,54 @@ CHUNK_OVERLAP=200
 
 ## 📚 Example Usage
 
-### Conversational Chatbot
+### Running Examples from Command Line
+
+The examples are designed to be run as standalone scripts:
+
+```bash
+# Conversational Chatbot
+python examples/01_conversational_chatbot.py --mode interactive
+
+# RAG Q&A System  
+python examples/02_rag_qa_system.py --mode example
+
+# Multi-Tool Agent
+python examples/03_multi_tool_agent.py --mode interactive
+```
+
+### Programmatic Usage (Advanced)
+
+If you need to import and use the functions programmatically, you can use importlib:
+
 ```python
-# For programmatic use, you can import and use the functions directly
 import sys
-sys.path.insert(0, 'path/to/portfolio_langchain_py')
+import importlib.util
 
-from examples.conversational_chatbot_01 import create_conversational_agent
+# Load the conversational chatbot module
+spec = importlib.util.spec_from_file_location(
+    "chatbot",
+    "examples/01_conversational_chatbot.py"
+)
+chatbot_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(chatbot_module)
 
-# Create agent
-agent = create_conversational_agent()
-
-# Chat
+# Create and use the agent
+agent = chatbot_module.create_conversational_agent()
 response = agent.invoke({"input": "What is 25 * 4?"})
 print(response['output'])
 ```
 
-### RAG Q&A System
+Or add the examples directory to your Python path:
+
 ```python
 import sys
-sys.path.insert(0, 'path/to/portfolio_langchain_py')
+sys.path.insert(0, 'examples')
 
-from examples.rag_qa_system_02 import setup_rag_system
-
-# Setup RAG system
-qa_chain = setup_rag_system()
-
-# Ask questions
-result = qa_chain.invoke({"query": "What is LangChain?"})
-print(result['result'])
+# Import using the filename as-is (requires Python import hooks or renaming)
+# For simpler integration, consider running examples as scripts
 ```
 
-### Multi-Tool Agent
-```python
-import sys
-sys.path.insert(0, 'path/to/portfolio_langchain_py')
-
-from examples.multi_tool_agent_03 import create_multi_tool_agent
-
-# Create agent
-agent = create_multi_tool_agent()
-
-# Execute tasks
-response = agent.invoke({"input": "Calculate 15 * 8 + 42"})
-print(response['output'])
-```
-
-**Note:** The examples are primarily designed to be run as standalone scripts using the command-line interface shown above. For programmatic use, you may need to adjust the import paths based on your project structure.
+**Note:** Due to the numeric prefixes in filenames (e.g., `01_`, `02_`), the examples are best run as standalone scripts rather than imported as modules. For production use, consider creating wrapper modules with standard Python naming conventions.
 
 ## 🏗️ Project Structure
 

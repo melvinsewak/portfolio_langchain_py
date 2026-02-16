@@ -181,8 +181,18 @@ def create_file_writer_tool() -> StructuredTool:
     def write_file(filename: str, content: str) -> str:
         """Write content to a file in /tmp directory."""
         try:
+            # Use only the basename to prevent path traversal
+            safe_filename = os.path.basename(filename)
+            if not safe_filename or safe_filename.startswith('.'):
+                return "Error: Invalid filename"
+            
             # Ensure we write to /tmp for safety
-            filepath = os.path.join("/tmp", filename)
+            filepath = os.path.join("/tmp", safe_filename)
+            
+            # Verify the resolved path is still under /tmp
+            resolved_path = os.path.realpath(filepath)
+            if not resolved_path.startswith("/tmp/"):
+                return "Error: Invalid file path"
             
             with open(filepath, 'w') as f:
                 f.write(content)

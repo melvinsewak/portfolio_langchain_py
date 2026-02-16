@@ -11,7 +11,8 @@ class Config:
         """Initialize configuration by loading environment variables."""
         load_dotenv()
         
-        self.openai_api_key = self._get_required_env("OPENAI_API_KEY")
+        # Store raw API key without validation in __init__
+        self.openai_api_key = os.getenv("OPENAI_API_KEY", "")
         self.openai_model = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo")
         self.temperature = float(os.getenv("TEMPERATURE", "0.7"))
         self.max_tokens = int(os.getenv("MAX_TOKENS", "1000"))

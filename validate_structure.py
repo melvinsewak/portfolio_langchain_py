@@ -101,11 +101,28 @@ def check_requirements():
     
     try:
         with open("requirements.txt", "r") as f:
-            content = f.read()
+            lines = f.readlines()
+        
+        # Collect normalized package names from requirements.txt
+        found_packages = set()
+        operators = ["==", ">=", "<=", "~=", "!=", ">", "<"]
+        for line in lines:
+            # Strip comments and surrounding whitespace
+            line = line.split("#", 1)[0].strip()
+            if not line:
+                continue
+            name = line
+            for op in operators:
+                idx = name.find(op)
+                if idx != -1:
+                    name = name[:idx].strip()
+                    break
+            if name:
+                found_packages.add(name.lower())
         
         all_present = True
         for package in required_packages:
-            present = package in content
+            present = package.lower() in found_packages
             status = "✅" if present else "❌"
             print(f"{status} {package}")
             if not present:
