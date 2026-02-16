@@ -22,10 +22,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from langchain.agents import AgentExecutor, create_openai_tools_agent
 from langchain.memory import ConversationBufferMemory
-from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.tools import Tool
-from utils import get_config
+from utils import get_config, create_chat_llm
 
 
 def create_calculator_tool() -> Tool:
@@ -109,13 +108,8 @@ def create_conversational_agent():
         print("❌ Configuration validation failed. Please check your .env file.")
         sys.exit(1)
     
-    # Initialize the language model
-    llm = ChatOpenAI(
-        model=config.openai_model,
-        temperature=config.temperature,
-        max_tokens=config.max_tokens,
-        openai_api_key=config.openai_api_key
-    )
+    # Initialize the language model (works with both OpenAI and Azure OpenAI)
+    llm = create_chat_llm(config)
     
     # Create tools
     tools = [

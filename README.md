@@ -176,29 +176,64 @@ python examples/08_external_api_agent.py --mode example
 All examples are configured through the `.env` file:
 
 ```env
-# Required
-OPENAI_API_KEY=your_openai_api_key_here
+# Choose your LLM provider: "openai" or "azure"
+LLM_PROVIDER=openai
 
-# Optional - Model configuration
+# For OpenAI
+OPENAI_API_KEY=your_openai_api_key_here
 OPENAI_MODEL=gpt-3.5-turbo
+
+# For Azure OpenAI (Microsoft Foundry)
+# AZURE_OPENAI_API_KEY=your_azure_openai_api_key_here
+# AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
+# AZURE_OPENAI_DEPLOYMENT=your-deployment-name
+# AZURE_OPENAI_API_VERSION=2024-02-15-preview
+
+# Common settings
 TEMPERATURE=0.7
 MAX_TOKENS=1000
-
-# Optional - Behavior
 VERBOSE=false
 
-# Optional - RAG configuration
+# RAG configuration
 CHROMA_PERSIST_DIRECTORY=./chroma_db
 CHUNK_SIZE=1000
 CHUNK_OVERLAP=200
+```
+
+### Switching Between OpenAI and Azure OpenAI
+
+The examples support both standard OpenAI and Azure OpenAI seamlessly:
+
+**For OpenAI:**
+```env
+LLM_PROVIDER=openai
+OPENAI_API_KEY=sk-your-key-here
+OPENAI_MODEL=gpt-3.5-turbo
+```
+
+**For Azure OpenAI (Microsoft Foundry):**
+```env
+LLM_PROVIDER=azure
+AZURE_OPENAI_API_KEY=your-azure-key
+AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_OPENAI_DEPLOYMENT=your-deployment-name
+AZURE_OPENAI_API_VERSION=2024-02-15-preview
 ```
 
 ### Configuration Options
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `OPENAI_API_KEY` | Your OpenAI API key (required) | - |
+| `LLM_PROVIDER` | LLM provider: `openai` or `azure` | `openai` |
+| **OpenAI Settings** | | |
+| `OPENAI_API_KEY` | Your OpenAI API key | - |
 | `OPENAI_MODEL` | OpenAI model to use | `gpt-3.5-turbo` |
+| **Azure OpenAI Settings** | | |
+| `AZURE_OPENAI_API_KEY` | Your Azure OpenAI API key | - |
+| `AZURE_OPENAI_ENDPOINT` | Azure OpenAI endpoint URL | - |
+| `AZURE_OPENAI_DEPLOYMENT` | Azure deployment name | - |
+| `AZURE_OPENAI_API_VERSION` | Azure API version | `2024-02-15-preview` |
+| **Common Settings** | | |
 | `TEMPERATURE` | Sampling temperature (0.0 to 1.0) | `0.7` |
 | `MAX_TOKENS` | Maximum tokens in response | `1000` |
 | `VERBOSE` | Enable verbose logging | `false` |
